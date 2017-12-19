@@ -1,0 +1,146 @@
+DROP DATABASE IF EXISTS agence;
+
+CREATE DATABASE IF NOT EXISTS agence;
+USE agence;
+# -----------------------------------------------------------------------------
+#       TABLE : VOL_G
+# -----------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS VOL_G
+ (
+   NUM_VOL VARCHAR(10) NOT NULL  ,
+   NUM_AERO CHAR(32) NOT NULL  ,
+   NUM_AERO_ARRIVEE CHAR(32) NOT NULL  ,
+   JOUR INTEGER(1) NOT NULL  ,
+   HEURE_DEPART TIME NOT NULL  ,
+   HEURE_ARRIVEE TIME NOT NULL  ,
+   NBR_PLACES INTEGER(3) NOT NULL  
+   , PRIMARY KEY (NUM_VOL) 
+ ) 
+ comment = "";
+
+# -----------------------------------------------------------------------------
+#       TABLE : VOL
+# -----------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS VOL
+ (
+   NUM_VOL VARCHAR(10) NOT NULL  ,
+   DATE_DEPART DATE NOT NULL  ,
+   DATE_ARRIVEE DATE NOT NULL  
+   , PRIMARY KEY (NUM_VOL,DATE_DEPART) 
+ ) 
+ comment = "";
+
+# -----------------------------------------------------------------------------
+#       TABLE : AEROPORT
+# -----------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS AEROPORT
+ (
+   NUM_AERO CHAR(32) NOT NULL  ,
+   NOM_AERO VARCHAR(50) NOT NULL  ,
+   VILLE VARCHAR(30) NOT NULL  
+   , PRIMARY KEY (NUM_AERO) 
+ ) 
+ comment = "";
+
+# -----------------------------------------------------------------------------
+#       TABLE : CLIENT
+# -----------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS CLIENT
+ (
+   NUM_CLIENT INTEGER(3) NOT NULL  ,
+   NOM VARCHAR(30) NOT NULL  ,
+   PRENOM VARCHAR(30) NOT NULL  ,
+   EMAIL VARCHAR(30) NOT NULL  
+   , PRIMARY KEY (NUM_CLIENT) 
+ ) 
+ comment = "";
+
+# -----------------------------------------------------------------------------
+#       TABLE : RESERVATION
+# -----------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS RESERVATION
+ (
+   ID_AGENCE INTEGER(2) NOT NULL  ,
+   NUM_RESA INTEGER(3) NOT NULL  ,
+   NUM_CLIENT INTEGER(3) NOT NULL  ,
+   NUM_VOL VARCHAR(10) NOT NULL  ,
+   DATE_DEPART DATE NOT NULL  ,
+   DATE_RESA DATE NOT NULL  ,
+   NBR_PLACE INTEGER(2) NOT NULL  
+   , PRIMARY KEY (ID_AGENCE,NUM_RESA) 
+ ) 
+ comment = "";
+
+# -----------------------------------------------------------------------------
+#       TABLE : EMPLOYE
+# -----------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS EMPLOYE
+ (
+   LOGIN VARCHAR(15) NOT NULL  ,
+   ID_AGENCE INTEGER(2) NOT NULL  ,
+   MDP VARCHAR(20) NOT NULL  ,
+   NOM VARCHAR(20) NOT NULL  ,
+   PRENOM VARCHAR(30) NOT NULL  ,
+   EMAIL VARCHAR(30) NOT NULL  
+   , PRIMARY KEY (LOGIN) 
+ ) 
+ comment = "";
+
+# -----------------------------------------------------------------------------
+#       TABLE : AGENCE
+# -----------------------------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS AGENCE
+ (
+   ID_AGENCE INTEGER(2) NOT NULL  ,
+   LIBELLE VARCHAR(40) NOT NULL  
+   , PRIMARY KEY (ID_AGENCE) 
+ ) 
+ comment = "";
+
+
+# -----------------------------------------------------------------------------
+#       CREATION DES REFERENCES DE TABLE
+# -----------------------------------------------------------------------------
+
+
+ALTER TABLE VOL_G 
+  ADD FOREIGN KEY FK_VOL_G_AEROPORT (NUM_AERO)
+      REFERENCES AEROPORT (NUM_AERO) ;
+
+
+ALTER TABLE VOL_G 
+  ADD FOREIGN KEY FK_VOL_G_AEROPORT1 (NUM_AERO_ARRIVEE)
+      REFERENCES AEROPORT (NUM_AERO) ;
+
+
+ALTER TABLE VOL 
+  ADD FOREIGN KEY FK_VOL_VOL_G (NUM_VOL)
+      REFERENCES VOL_G (NUM_VOL) ;
+
+
+ALTER TABLE RESERVATION 
+  ADD FOREIGN KEY FK_RESERVATION_CLIENT (NUM_CLIENT)
+      REFERENCES CLIENT (NUM_CLIENT) ;
+
+
+ALTER TABLE RESERVATION 
+  ADD FOREIGN KEY FK_RESERVATION_AGENCE (ID_AGENCE)
+      REFERENCES AGENCE (ID_AGENCE) ;
+
+
+ALTER TABLE RESERVATION 
+  ADD FOREIGN KEY FK_RESERVATION_VOL (NUM_VOL,DATE_DEPART)
+      REFERENCES VOL (NUM_VOL,DATE_DEPART) ;
+
+
+ALTER TABLE EMPLOYE 
+  ADD FOREIGN KEY FK_EMPLOYE_AGENCE (ID_AGENCE)
+      REFERENCES AGENCE (ID_AGENCE) ;
+
