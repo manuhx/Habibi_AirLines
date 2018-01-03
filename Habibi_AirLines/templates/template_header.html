@@ -62,7 +62,6 @@
 </head>
 <body>
 
-<div class="fh5co-loader"></div>
 
 <div id="page">
     <nav class="fh5co-nav" role="navigation">
@@ -74,8 +73,8 @@
                     </div>
                     <div class="col-xs-9 text-right menu-1">
                         <ul>
-                            <li class="active"><a href="index_old.html">Accueil</a></li>
-                            <li><a href="work.html">Catalogue des vols</a></li>
+                            <li class="active"><a href="../controller/controller.php?action=acceuil">Accueil</a></li>
+                            <li><a href="#">Catalogue des vols</a></li>
                             <!-- Si besoin d'un dropdown pour le menu :
                             <li class="has-dropdown">
                                 <a href="blog.html">Blog</a>
@@ -86,8 +85,16 @@
                                     <li><a href="#">API</a></li>
                                 </ul>
                             </li> -->
-                            <li><a href="about.html">Réservations</a></li>
-                            <li><a href="contact.html">Mon compte</a></li>
+                            <li><a href="#">Réservations</a></li>
+                            <li></li>
+                            <li class="has-dropdown">
+                                <a href="#">Clients</a>
+                                <ul class="dropdown">
+                                    <li><a href="../controller/controller.php?action=client_liste">Liste des Clients</a></li>
+                                    <li><a href="../controller/controller.php?action=client_ajout">Ajouter un Client</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="../controller/controller.php?action=account">Mon compte</a></li>
                         </ul>
                     </div>
                 </div>
