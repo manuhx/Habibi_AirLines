@@ -12,7 +12,19 @@ include "../templates/template_header.html";
 <div class="row">
 <div class="col-md-10 col-md-offset-1">
     <br>
-    <form class="form-group" method="POST" action="../controller/controller.php?action=client_liste">
+
+    <?php
+        if(isset($res)){
+                if($res == "OK"){
+            ?>
+            <p class="alert-success">Le Client a bien été ajouté !</p>
+            <?php
+        }
+                else {?> <p class="alert-warning">Oups une erreur s'est produite.</p> <?php }
+    }
+    ?>
+
+    <form class="form-group" method="POST" action="../controller/controller.php?action=client_ajout">
 
         <div class="form-group">
             <label class="control-label">Nom</label>
