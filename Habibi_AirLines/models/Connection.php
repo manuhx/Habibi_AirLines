@@ -61,4 +61,14 @@ class Connection
         else return false;
     }
 
+    /*public function listeVol()
+    {
+        //SELECT DISTINCT `NUM_AERO`,`NUM_AERO_ARRIVEE` FROM vol_g
+        $conn = $this->dbh;
+        $reponse = $conn->exec('SELECT DISTINCT `NUM_AERO`,`NUM_AERO_ARRIVEE` FROM vol_g');
+        $data = $reponse->fetchAll();
+        return $data;
+
+    }*/
+
 }
