@@ -17,19 +17,19 @@ include "../templates/template_header.html";
 
         <thead>
             <tr>
-                <th>Numéro Client</th>
-                <th>Nom</th>
-                <th>Prénom</th>
-                <th>Adresse Mail</th>
+                <th class="text-center">Numéro Client</th>
+                <th class="text-center">Nom</th>
+                <th class="text-center">Prénom</th>
+                <th class="text-center">Adresse Mail</th>
             </tr>
         </thead>
         <tbody>
             <?php foreach($data as $d) { ?>
             <tr>
-                <td><?php echo $d["NUM_CLIENT"] ?></td>
-                <td><?php echo $d["NOM"] ?></td>
-                <td><?php echo $d["PRENOM"] ?></td>
-                <td><?php echo $d["EMAIL"] ?></td>
+                <td class="text-center"><?php echo $d["NUM_CLIENT"] ?></td>
+                <td class="text-center"><?php echo strtoupper($d["NOM"]) ?></td>
+                <td class="text-center"><?php echo $d["PRENOM"] ?></td>
+                <td class="text-center"><?php echo $d["EMAIL"] ?></td>
             </tr>
             <?php } ?>
         </tbody>

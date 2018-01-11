@@ -73,18 +73,18 @@
                     </div>
                     <div class="col-xs-9 text-right menu-1">
                         <ul>
-                            <li class="active"><a href="../controller/controller.php?action=acceuil">Accueil</a></li>
-                            <li><a href="../controller/controller.php?action=catalogue">Catalogue des vols</a></li>
-                            <li><a href="../controller/controller.php?action=liste_reservation">Réservations</a></li>
+                            <li class="<?php if($action == "acceuil") { echo "active";} ?>"><a href="../controller/controller.php?action=acceuil">Accueil</a></li>
+                            <li class="<?php if($action == "catalogue" or $action == "detail" or $action == "dispo" or $action == "reservation" or $action == "result") { echo "active";} ?>"><a href="../controller/controller.php?action=catalogue">Catalogue des vols</a></li>
+                            <li class="<?php if($action == "liste_reservation" or $action == "reservation_detail") { echo "active";} ?>"><a href="../controller/controller.php?action=liste_reservation">Réservations</a></li>
                             <li></li>
-                            <li class="has-dropdown">
+                            <li class="has-dropdown <?php if($action == "client_liste" or $action == "client_ajout") { echo "active";} ?>">
                                 <a href="#">Clients</a>
                                 <ul class="dropdown">
                                     <li><a href="../controller/controller.php?action=client_liste">Liste des Clients</a></li>
                                     <li><a href="../controller/controller.php?action=client_ajout">Ajouter un Client</a></li>
                                 </ul>
                             </li>
-                            <li><a href="../controller/controller.php?action=account">Mon compte</a></li>
+                            <li class="<?php if($action == "account") { echo "active";} ?>"><a href="../controller/controller.php?action=account">Mon compte</a></li>
                         </ul>
                     </div>
                 </div>

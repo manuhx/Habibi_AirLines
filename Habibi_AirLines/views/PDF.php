@@ -11,6 +11,10 @@ require '../source files/fpdf/fpdf.php';
 
 class PDF extends FPDF
 {
+    protected $B = 0;
+    protected $I = 0;
+    protected $U = 0;
+    protected $HREF = '';
 // Page header
     function Header()
     {
